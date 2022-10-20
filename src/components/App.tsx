@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Reset } from "styled-reset";
 import Monitor, { Point, Size } from "./monitor";
 import useScroll from "../hooks/useWheel";
 
@@ -14,10 +15,13 @@ const App = () => {
   }, [wheelValue]);
 
   return (
-    <div style={{ width: "100%", height: "100%", position: "absolute" }}>
-      <Monitor pos={point1} size={size} />
-      <Monitor pos={point2} size={size} />
-    </div>
+    <React.Fragment>
+      <Reset />
+      <div style={{ width: "100%", height: "100%", position: "absolute" }}>
+        <Monitor pos={point1} size={size} />
+        <Monitor pos={point2} size={size} />
+      </div>
+    </React.Fragment>
   );
 };
 
