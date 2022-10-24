@@ -16,6 +16,10 @@ const App = () => {
     setViewPoint(viewPoint + wheelValue + moveValue);
   }, [wheelValue, moveValue]);
 
+  useEffect(() => {
+    setViewPoint(viewPoint + moveValue);
+  }, [moveValue]);
+
   return (
     <React.Fragment>
       <Reset />
