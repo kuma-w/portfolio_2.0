@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Reset } from "styled-reset";
 import Monitor, { Point, Size } from "./monitor";
-import useScroll from "../hooks/useWheel";
+import useWheel from "../hooks/useWheel";
+import useDrag from "../hooks/useDrag";
 
 const App = () => {
-  const { wheelValue } = useScroll();
+  const { wheelValue } = useWheel();
+  const { moveValue } = useDrag();
   const [viewPoint, setViewPoint] = useState(0);
   const point1: Point = { x: 100 + viewPoint, y: 100 };
   const point2: Point = { x: 800 + viewPoint, y: 100 };
   const size: Size = { width: 515, height: 300 };
 
   useEffect(() => {
-    setViewPoint(viewPoint + wheelValue);
-  }, [wheelValue]);
+    setViewPoint(viewPoint + wheelValue + moveValue);
+  }, [wheelValue, moveValue]);
 
   return (
     <React.Fragment>
