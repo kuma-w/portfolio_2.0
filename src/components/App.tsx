@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Reset } from "styled-reset";
 import Monitor, { Point, Size } from "./monitor";
-import useScroll from "../hooks/useWheel";
+import useWheel from "../hooks/useWheel";
+import useMouseDownMove from "../hooks/useMouseDownMove";
 
 const App = () => {
-  const { wheelValue } = useScroll();
+  const { wheelValue } = useWheel();
+  const { moveValue } = useMouseDownMove();
   const [viewPoint, setViewPoint] = useState(0);
   const point1: Point = { x: 100 + viewPoint, y: 100 };
   const point2: Point = { x: 800 + viewPoint, y: 100 };
@@ -13,6 +15,10 @@ const App = () => {
   useEffect(() => {
     setViewPoint(viewPoint + wheelValue);
   }, [wheelValue]);
+
+  useEffect(() => {
+    setViewPoint(viewPoint + moveValue);
+  }, [moveValue]);
 
   return (
     <React.Fragment>
